@@ -1,0 +1,28 @@
+[
+  {
+    "id": "welcome",
+    "title": "Welcome to the garden",
+    "date": "2025-10-05",
+    "section": "life",
+    "type": "text",
+    "markdown": "content/welcome.md"
+  },
+  {
+    "id": "yt-sample",
+    "title": "A video I liked this week",
+    "date": "2025-10-03",
+    "section": "misc",
+    "type": "video",
+    "embedUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    "id": "notes-oct-2025",
+    "title": "Notes — October 2025",
+    "date": "2025-10-01",
+    "section": "tech",
+    "type": "file",
+    "url": "content/files/sample.txt",
+    "label": "notes.txt"
+  }
+]
+
