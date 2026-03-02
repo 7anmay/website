@@ -3,46 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tanmay — Thoughts</title>
+  <title>Tanmay Agarwal</title>
   <meta name="description" content="Personal homepage and thoughts">
-  <link rel="stylesheet" href="assets/style.css?v=20251005">
+  <link rel="stylesheet" href="assets/style.css?v=20251012">
   <link rel="alternate" type="application/json" href="content/posts.json">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-content">
-      <a class="brand" href="index.html">Tanmay</a>
+      <a class="brand" href="index.html">Tanmay Agarwal</a>
       <nav class="nav">
-        <a href="thoughts.html">Thoughts</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="#about" class="nav-link active" data-tab="about">About</a>
+        <!-- <a href="#posts" class="nav-link" data-tab="posts">Posts</a> -->
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Hi, I'm Tanmay.</h1>
-      <p>I collect ideas, notes, and experiments here — in text, video, and files. New bits land weekly.</p>
-      <p>
-        <a class="button" href="thoughts.html">Browse thoughts</a>
-      </p>
+  <div class="quote-bar">
+    <div class="container">
+      <blockquote>"Somewhere, something incredible is waiting to be known." — Carl Sagan</blockquote>
+    </div>
+  </div>
+
+  <main class="container page">
+
+    <!-- ABOUT TAB -->
+    <section id="about" class="tab-content active">
+
+      <div class="avatar-block">
+        <img class="avatar" src="assets/photo.jpg" alt="Tanmay" />
+        <div class="meta-links">
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+          /
+          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">Twitter</a>
+          /
+          <a href="https://medium.com/@tanmayagarwal_55603" target="_blank" rel="noopener">Medium</a>
+          /
+          <a href="mailto:you@example.com">Email</a>
+        </div>
+      </div>
+
+      <p>I spend a significant amount of time questioning the status quo and I believe ideas
+        come to those who are in search of them. Thinking about
+        technology, society and economics keeps me sane and listening to varied perspectives keeps it
+        interesting.</p>
+
+      <p>Building this personal corner of the web where I want to collect ideas, notes, and experiments — in text, video, and files.</p>
+
+      <h2>What I'm Thinking</h2>
+
+      <p> Lately like and unlike everyone else, I've been obsessed with the idea of super intelligence and thefuture
+        of humanity (It's mind wrecking to think of the sheer possibilities). 
+        And on a daily basis I keep coming back to the question: what does it take to make a robot genuinely useful (I mean truly truly useful)?</p>
+
+      <h2>What I'm Up To</h2>
+
+      <p>I'm a research engineer at
+        <a href="https://skild.ai" target="_blank" rel="noopener">Skild AI</a>,
+        where we do general purpose robotics.
+        Prior to that I was at the Robotics Institute <a href="https://www.ri.cmu.edu/" target="_blank" rel="noopener">(RI)</a> at Carnegie Mellon University, where I worked with professor
+        <a href="https://www.cis.cmu.edu/~jeffrey/" target="_blank" rel="noopener">Jeffrey Ichnowski</a>
+        and
+        <a href="https://www.cis.cmu.edu/~zachory/" target="_blank" rel="noopener">Zachory Erickson</a> on
+        mobile manipulation and perception in healthcare environments
+        (<a href="https://mrsdprojects.ri.cmu.edu/2024teami/" target="_blank" rel="noopener">ORB</a>).</p>
+
+      <h2>Where I'm From</h2>
+
+      <p>I grew up in the foothills of the Himalayas in India and moved to the US for
+        grad school. I did a fair bit of robotics back in India — at
+        <a href="https://addverb.ai/" target="_blank" rel="noopener">Addverb Technologies</a>
+        and at
+        <a href="https://zine.co.in" target="_blank" rel="noopener">ZINE</a>
+        at
+        <a href="https://mnit.ac.in/" target="_blank" rel="noopener">MNIT Jaipur</a> with professor
+        <a href="https://faculty.mnit.ac.in/Rajesh Kumar" target="_blank" rel="noopener">Rajesh Kumar</a>.</p>
+
+      <h2>Some Things that might interest you</h2>
+
+      <ul class="quirks">
+        <li>Listen to <a href="https://www.youtube.com/@PhilosiphizeThis/videos" target="_blank" rel="noopener">Philosiphize This!</a> by Stephen West — It's a masterpiece. You're welcome.</li>
+        <li>This is hands down the most compressed 0 to 1 <a href="https://youtu.be/zjkBMFhNj_g?si=q5aykXXJVjrptfmm" target="LLM" rel="noopener"> video   </a> on LLMs on the internet</li>
+        <li>If you haven't read the report <a href="https://www.plasticlist.org/report" target="_blank" rel="noopener">on microplastics in food</a>, you should (Nat Friedman is a legend)</li>
+      </ul>
+
     </section>
 
-    <!-- Sections chips removed to simplify the homepage -->
-
-    <section class="latest">
-      <h2>Latest posts</h2>
-      <div id="latest-posts" aria-live="polite"></div>
+    <!-- POSTS TAB -->
+    <section id="posts" class="tab-content">
+      <div id="thoughts-root"></div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Tanmay — Built with plain HTML/CSS/JS. Hosted on GitHub Pages.</p>
-    </div>
-  </footer>
-
-  <script src="assets/app.js?v=20251005" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="assets/app.js?v=20251012" defer></script>
 </body>
 </html>
-

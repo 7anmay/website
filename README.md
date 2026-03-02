@@ -2,6 +2,10 @@
 
 A minimal, personal site for thoughts and posts (text, video, files). Plain HTML/CSS/JS.
 
+## Add your photo
+- Replace `assets/photo.jpg` with your own photo (recommended: 600x600px or similar square/portrait ratio)
+- Supported formats: `.jpg`, `.jpeg`, `.png`
+
 ## Edit content
 - Update `content/posts.json` to add, edit, or remove posts. Supported fields:
   - `id` (string, unique)
@@ -13,6 +17,7 @@ A minimal, personal site for thoughts and posts (text, video, files). Plain HTML
   - When `type: video`: `embedUrl` (e.g., YouTube embed URL)
   - When `type: file`: `url` (path to a file) and optional `label`
 - Place markdown in `content/` and files in `content/files/`.
+- Edit the bio text in `index.html` (search for "I'm a researcher")
 
 ## Local preview
 Just open `index.html` in a browser. Some browsers block `fetch` of local files; if that happens, run a tiny static server:

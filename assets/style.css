@@ -1,12 +1,13 @@
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
-  --text: #0f172a; /* slate-900 */
-  --muted: #475569; /* slate-600 */
-  --accent: #1d4ed8; /* blue-700 */
-  --accent-2: #16a34a; /* green-600 */
-  --chip: #f1f5f9; /* slate-100 */
-  --chip-border: #e2e8f0; /* slate-200 */
+  --text: #1a1a1a;
+  --muted: #555;
+  --accent: #1d4ed8;
+  --chip: #f1f5f9;
+  --chip-border: #e2e8f0;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Base */
@@ -14,22 +15,23 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--sans);
+  font-size: 16px;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.75;
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.container { max-width: 880px; padding: 0 20px; margin: 0 auto; }
+.container { max-width: 640px; padding: 0 24px; margin: 0 auto; }
 
 /* Header */
 .site-header {
   position: sticky;
   top: 0;
-  backdrop-filter: saturate(120%) blur(6px);
-  background: rgba(255,255,255,0.7);
+  backdrop-filter: saturate(120%) blur(8px);
+  background: rgba(255,255,255,0.85);
   border-bottom: 1px solid var(--chip-border);
   z-index: 10;
 }
@@ -37,27 +39,101 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 52px;
 }
-.brand { font-weight: 700; color: var(--text); font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
-.nav a { margin-left: 16px; color: var(--muted); }
-.nav a:hover { color: var(--text); }
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  font-family: var(--serif);
+}
+.brand:hover { text-decoration: none; }
+.nav-link {
+  margin-left: 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+.nav-link:hover { color: var(--text); text-decoration: none; }
+.nav-link.active { color: var(--text); border-bottom: 2px solid var(--text); }
 
-/* Hero */
-.hero { padding: 32px 0 8px; }
-.hero h1 { margin: 0 0 6px; font-size: 2rem; font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
-.button {
-  display: inline-block;
-  padding: 10px 14px;
-  background: var(--text);
-  color: #ffffff;
-  border-radius: 8px;
+/* Tabs */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Quote bar */
+.quote-bar {
+  background: var(--chip);
+  border-bottom: 1px solid var(--chip-border);
+  padding: 12px 0;
+}
+.quote-bar blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Page layout */
+.page { padding: 40px 24px 80px; }
+
+.page-title {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  font-family: var(--serif);
   font-weight: 600;
 }
-.button:hover { filter: brightness(0.9); text-decoration: none; }
 
-/* Sections chips */
-.sections { padding: 16px 0 8px; }
+.avatar-block {
+  float: right;
+  margin: 0 0 20px 32px;
+  text-align: center;
+}
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--chip-border);
+}
+.meta-links {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+.meta-links a { color: var(--muted); }
+.meta-links a:hover { color: var(--text); }
+
+.page p {
+  margin: 0 0 16px;
+}
+
+.page h2 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--text);
+}
+
+/* Quirks list */
+.quirks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.quirks li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--chip-border);
+  line-height: 1.7;
+}
+.quirks li:last-child { border-bottom: none; }
+
+/* Sections chips (thoughts page) */
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chip {
   display: inline-block;
@@ -66,11 +142,12 @@ a:hover { text-decoration: underline; }
   background: var(--chip);
   border: 1px solid var(--chip-border);
   color: var(--muted);
+  font-size: 0.9rem;
 }
 .chip:hover { color: var(--text); }
 
 /* Latest */
-.latest { padding: 8px 0 40px; }
+.latest { padding: 8px 0 80px; }
 #latest-posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .card {
   background: var(--surface);
@@ -81,25 +158,49 @@ a:hover { text-decoration: underline; }
 .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
 .card .meta { color: var(--muted); font-size: 0.9rem; }
 
-/* Thoughts list */
-.filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 16px; }
-.post-list { display: grid; gap: 16px; }
-.post {
-  background: var(--surface);
-  border: 1px solid var(--chip-border);
-  border-radius: 12px;
-  padding: 16px;
+/* Posts list */
+.medium-link {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
 }
-.post h3 { margin: 0 0 8px; }
-.post .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; }
-.post .content { overflow: hidden; }
-.video { aspect-ratio: 16 / 9; width: 100%; border: none; border-radius: 8px; }
-
-/* Footer */
-.site-footer { border-top: 1px solid var(--chip-border); padding: 24px 0 48px; color: var(--muted); }
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--chip-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  line-height: 2;
+}
+.post-item:last-child { border-bottom: none; }
+.post-link {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.post-link:hover { color: var(--accent); }
+.post-date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
 
 /* Small screens */
-@media (max-width: 560px) {
-  .hero { padding-top: 36px; }
+@media (max-width: 640px) {
+  .page { padding: 32px 24px 60px; }
+  .avatar-block {
+    float: none;
+    margin: 0 0 20px 0;
+  }
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
 }
-
