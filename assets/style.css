@@ -107,6 +107,13 @@ a:hover { text-decoration: underline; }
 }
 .meta-links a { color: var(--muted); }
 .meta-links a:hover { color: var(--text); }
+.meta-email {
+  color: var(--muted);
+  font-size: 0.65rem;
+  margin-top: 4px;
+}
+.meta-email a { color: var(--muted); }
+
 
 .page p {
   margin: 0 0 16px;
