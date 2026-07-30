@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post — Tanmay Agarwal</title>
+  <meta name="description" content="Blog post">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="assets/style.css?v=20251013">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="index.html">Tanmay Agarwal</a>
+      <nav class="nav">
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="index.html#posts">Posts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container article">
+    <div class="article-header">
+      <h1 id="article-title"></h1>
+      <div class="article-meta" id="article-meta"></div>
+    </div>
+    <div class="article-body" id="article-body">
+      <p style="color:var(--muted)">Loading…</p>
+    </div>
+    <div class="article-footer">
+      <a href="index.html#posts">← Back to posts</a>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+      if (!postId) { document.getElementById('article-body').textContent = 'No post specified.'; return; }
+
+      try {
+        const res = await fetch('content/posts.json', { cache: 'no-store' });
+        const posts = await res.json();
+        const post = posts.find(p => p.id === postId);
+        if (!post) { document.getElementById('article-body').textContent = 'Post not found.'; return; }
+
+        document.title = post.title + ' — Tanmay Agarwal';
+        document.getElementById('article-title').textContent = post.title;
+
+        const date = new Date(post.date);
+        const dateStr = date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('article-meta').textContent = dateStr + '  ·  ' + post.section;
+
+        const body = document.getElementById('article-body');
+
+        if (post.type === 'text' && post.markdown) {
+          const mdRes = await fetch(post.markdown, { cache: 'no-store' });
+          const md = await mdRes.text();
+          body.innerHTML = marked.parse(md);
+        } else if (post.type === 'text' && post.html) {
+          body.innerHTML = post.html;
+        } else if (post.type === 'text' && post.text) {
+          body.textContent = post.text;
+        } else if (post.type === 'video') {
+          body.innerHTML = '<iframe class="article-video" src="' + post.embedUrl + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        } else if (post.type === 'file') {
+          body.innerHTML = '<a href="' + post.url + '">Download ' + (post.label || 'file') + '</a>';
+        }
+      } catch (e) {
+        document.getElementById('article-body').textContent = 'Failed to load post.';
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>

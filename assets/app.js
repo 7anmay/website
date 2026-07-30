@@ -62,14 +62,20 @@
       const li = document.createElement('li');
       li.className = 'post-item';
       li.id = p.id;
+      const left = document.createElement('div');
+      left.className = 'post-info';
       const link = document.createElement('a');
       link.className = 'post-link';
-      link.href = p.url || p.markdown || '#';
-      if (p.type === 'video') link.href = p.embedUrl.replace('/embed/', '/watch?v=');
-      link.target = '_blank';
-      link.rel = 'noopener';
+      link.href = 'post.html?id=' + encodeURIComponent(p.id);
       link.textContent = p.title;
-      li.appendChild(link);
+      left.appendChild(link);
+      if (p.blurb) {
+        const blurb = document.createElement('div');
+        blurb.className = 'post-blurb';
+        blurb.textContent = p.blurb;
+        left.appendChild(blurb);
+      }
+      li.appendChild(left);
       const date = document.createElement('span');
       date.className = 'post-date';
       date.textContent = formatDate(p.date);
